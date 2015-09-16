@@ -4,7 +4,12 @@ CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${CURRENT_DIR}/helpers.sh"
 
 check_dir=$(get_check_dir)
-num=$(find $check_dir -type f | awk 'BEGIN {n=0} {n++} END {print n}')
+if [[ -d "$check_dir" ]]; then
+  num=$(find $check_dir -type f | awk 'BEGIN {n=0} {n++} END {print n}')
+else
+  echo "#[fg=red]No such dir#[default]"
+  exit 0
+fi
 
 if [[ $num -gt 0 ]]; then
   echo "#[fg=red]E${num}#[default]"
