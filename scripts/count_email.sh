@@ -7,9 +7,9 @@ check_dir=$(get_check_dir)
 num=$(find $check_dir -type f | awk 'BEGIN {n=0} {n++} END {print n}')
 
 if [[ $num -gt 0 ]]; then
-  echo "#[fg=red]New mail($num)#[default]"
+  echo "#[fg=red]E${num}#[default]"
 else
-  echo "No mail"
+  echo "E"
 fi
 
 # Local Variables:
